@@ -1,0 +1,106 @@
+<div layout="column">
+  <div class="md-headline">
+    {{team.name}}
+  </div>
+  <div class="md-subhead">
+    <team-age year-start="{{team.yearStart}}" year-end="{{team.yearEnd}}"></team-age>
+  </div>
+
+  <div layout-padding>
+    <div layout-gt-sm="row">
+      <div flex-gt-sm="66">
+        <picture ng-if="!imgError">
+            <source ng-srcset="img/team/{{(team.shortName| lowercase)}}.jpg, img/team/{{(team.shortName| lowercase)}}.jpg 2x"
+            media="(min-width: 1200px)">
+          <source ng-srcset="img/team/{{(team.shortName| lowercase)}}-md.jpg, img/team/{{(team.shortName| lowercase)}}-md.jpg 2x"
+            media="(min-width: 960px)">
+          <source ng-srcset="img/team/{{(team.shortName| lowercase)}}-sm.jpg, img/team/{{(team.shortName| lowercase)}}-sm.jpg 2x"
+            media="(min-width: 600px) and (max-width: 959px)">
+          <source ng-srcset="img/team/{{(team.shortName| lowercase)}}-xs.jpg, img/team/{{(team.shortName| lowercase)}}-xs.jpg 2x"
+            media="(max-width: 599px)">
+          <img style="width:100%" ng-srcset="img/team/{{(team.shortName| lowercase)}}-md.jpg, img/team/{{(team.shortName| lowercase)}}-md.jpg 2x"
+            alt="Mannschaftsfoto" ng-on-error="setImgError()">
+        </picture>
+        <picture ng-if="imgError">
+            <source ng-srcset="img/team/default.jpg, img/team/default.jpg 2x"
+            media="(min-width: 1200px)">
+            <source ng-srcset="img/team/default-md.jpg, img/team/default-md.jpg 2x"
+              media="(min-width: 960px)">
+            <source ng-srcset="img/team/default-sm.jpg, img/team/default-sm.jpg 2x"
+              media="(min-width: 600px) and (max-width: 959px)">
+            <source ng-srcset="img/team/default-xs.jpg, img/team/defaultxs.jpg 2x"
+              media="(max-width: 599px)">
+            <img style="width:100%" ng-srcset="img/team/default-md.jpg, img/team/default-md.jpg 2x"
+              alt="Mannschaftsfoto">
+          </picture>
+      </div>
+      <div flex-gt-sm="33">
+        <match title="letztes Spiel" match="prevMatch"></match>
+        <match title="nächstes Spiel" match="nextMatch"></match>
+      </div>
+    </div>
+
+    <div layout-gt-sm="row" layout-padding-gt-sm>
+      <div layout="column" ng-if="team.trainerList.length > 0">
+        <div class="md-title">Trainer und Betreuer</div>
+        <div ng-repeat="trainer in team.trainerList" style="margin-left: 10px" layout="row" ng-if="trainer">
+          <md-button ng-if="trainer.hasMail" class="md-icon-button" ng-href="#!/mail/{{trainer.id}}" style="padding-top:0px; padding-bottom: 0px">
+            <sw-icon iconset="communication" icon="email" width="12px"></sw-icon>
+          </md-button>
+          <a ng-href="#!/mail/{{trainer.id}}"  ng-if="trainer.hasMail" class="noLink">{{trainer.firstName + " " + trainer.name}}</a>
+          <div  ng-if="!trainer.hasMail" style="padding-left: 50px">{{trainer.firstName + " " + trainer.name}}</div>
+        </div>
+      </div>
+
+      <div layout="column" ng-if="trainingtime.length > 0">
+        <div class="md-title">Trainingszeiten</div>
+        <table style="margin-left: 10px">
+          <tr ng-repeat="training in trainingtime">
+            <td>{{days[training.dayOfWeek]}}</td>
+            <td>{{training.startTime| date : 'shortTime'}}</td>
+            <td> - </td>
+            <td>{{training.endTime| date : 'shortTime'}}</td>
+            <td ng-if="team.teamId === 15 && $index===0">in Grafenwald</td>
+            <td ng-if="team.teamId === 15 && $index===1">in Kirchhellen</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div ng-if="matches.length > 0">
+      <div class="md-title">Spielplan</div>
+      <md-table-container>
+        <table md-table>
+          <tbody md-body>
+            <tr md-row ng-repeat="match in matches| orderBy: 'kickoff'">
+              <td md-cell>{{match.kickoff| date: 'dd.MM.yyyy HH:mm'}}</td>
+              <td md-cell>
+                <img ng-if="match.home && $mdMedia('gt-md')" ng-src="img/vfl_logo.png" style="height: 35px" />
+                <img ng-if="!match.home && $mdMedia('gt-md')" ng-src="img/club/{{match.opponent.logoPath|| 'default.png'}}" style="height: 35px" />
+                {{match.home ? "VfL Grafenwald" : match.opponent.name}}
+              </td>
+              <td md-cell>
+                -
+              </td>
+              <td md-cell>
+                <img ng-if="!match.home && $mdMedia('gt-md')" ng-src="img/vfl_logo.png" style="height: 35px" />
+                <img ng-if="match.home && $mdMedia('gt-md')" ng-src="img/club/{{match.opponent.logoPath|| 'default.png'}}" style="height: 35px" />
+                {{match.home ? match.opponent.name : "VfL Grafenwald"}}
+              </td>
+              <td md-cell style="text-align: right">
+                {{getGoalsHome(match)}}
+              </td>
+              <td md-cell style="text-align: center">:</td>
+              <td md-cell style="text-align: left">
+                {{getGoalsAway(match)}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+
+    <news list="team.category.newsList"></news>
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+<md-dialog-content ng-controller="EventCtrl">
+  <div class="md-dialog-content">
+    <div ng-if="error" style="color:red">Name oder Passwort falsch</div>
+    <form layout="column" role="form" ng-submit="save()">
+      <md-input-container>
+        <label>Titel</label>
+        <input type="text" name="title" ng-model="event.title" required>
+      </md-input-container>
+      <div layout="row">
+        <md-input-container>
+          <label>Startdatum</label>
+          <input type="text" name="startDate" ng-model="startDate" required date>
+        </md-input-container>
+        <md-input-container>
+          <label>Startzeit</label>
+          <input type="text" name="startTime" ng-model="startTime" required time>
+        </md-input-container>
+      </div>
+      <!---->
+      <div layout="row">
+        <md-input-container>
+          <label>Enddatum</label>
+          <input type="text" name="endDate" ng-model="endDate" required date>
+        </md-input-container>
+        <md-input-container>
+          <label>Endzeit</label>
+          <input type="text" name="endTime" ng-model="endTime" required time>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-checkbox ng-model="resource.P1" aria-label="Rasen">
+          Rasen
+        </md-checkbox>
+        <md-checkbox ng-model="resource.P2" aria-label="Kunstrasen">
+          Kunstrasen
+        </md-checkbox>
+      </div>
+      <div layout="row">
+        <div>Kabine</div>
+        <md-checkbox ng-model="resource.K1" aria-label="Kabine 1">
+          1
+        </md-checkbox>
+        <md-checkbox ng-model="resource.K2" aria-label="Kabine 2">
+          2
+        </md-checkbox>
+        <md-checkbox ng-model="resource.K3" aria-label="Kabine 3">
+          3
+        </md-checkbox>
+        <md-checkbox ng-model="resource.K4" aria-label="Kabine 4">
+          4
+        </md-checkbox>
+      </div>
+      <div layout="row">
+        <div>Hütte</div>
+        <md-checkbox ng-model="resource.H1" aria-label="Huette Rasen">
+          Rasen
+        </md-checkbox>
+        <md-checkbox ng-model="resource.H2" aria-label="Huette Kunstrasen">
+          Kunstrasen
+        </md-checkbox>
+      </div>
+      <md-button type="submit">
+        Speichern
+      </md-button>
+    </form>
+  </div>
+</md-dialog-content>

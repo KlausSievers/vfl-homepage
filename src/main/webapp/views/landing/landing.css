@@ -1,0 +1,19 @@
+.landing .gameplan table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), .landing .gameplan table.md-table:not(.md-row-select) td.md-cell:first-child, .landing .gameplan table.md-table td.md-cell:last-child {
+  padding-right: 0px;
+}
+
+.landing .gameplan table.md-table:not(.md-row-select) td.md-cell:first-child {
+  padding-left: 0px;
+}
+
+.landing .gameplan md-card-header, .landing .magazine md-card-header  {
+  padding-bottom: 2px;
+}
+
+.landing .gameplan md-card-content,  .landing .magazine md-card-content{
+  padding-top: 0px;
+}
+
+.landing .gameplan td.kickoff {
+  max-width: 60px;
+}

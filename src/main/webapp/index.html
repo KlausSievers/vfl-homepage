@@ -1,0 +1,233 @@
+<!doctype html>
+<html ng-app="VflHomepage" lang="de">
+
+<head>
+  <title>VfL Grafenwald Fußball</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Thanks to http://realfavicongenerator.net -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#eeeeee">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link href="bower_components/angular-material/angular-material.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/angular-material-data-table/dist/md-data-table.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/mdPickers/dist/mdPickers.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/fullcalendar-scheduler/packages/core/main.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/fullcalendar-scheduler/packages/daygrid/main.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/fullcalendar-scheduler/packages-premium/timeline/main.css" rel="stylesheet"
+    type="text/css" />
+  <link href="bower_components/fullcalendar-scheduler/packages-premium/resource-timeline/main.css" rel="stylesheet"
+    type="text/css" />
+  <link href="style/vfl.css" rel="stylesheet" type="text/css" />
+  <link href="views\landing\landing.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" type="text/css"
+    href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#4caf50"
+          },
+          "button": {
+            "background": "#ffffff"
+          }
+        },
+        "content": {
+          "message": "Diese Seite verwendet Cookies um Ihnen einen optimalen Service zur Verf&uuml;gung zu stellen. Wenn Sie diese Seite weiter benutzen, stimmen Sie der Verwendung zu!",
+          "dismiss": "Okay",
+          "link": "mehr Informationen",
+          "href": "https://vfl-grafenwald-jugend.de/#/dataprivacy"
+        }
+      })
+    });
+  </script>
+
+</head>
+
+<body ng-controller="AppCtrl" ng-cloak layout="r">
+  <md-sidenav md-component-Id="mainMenu" md-is-locked-open="$mdMedia('gt-md')" class="md-sidenav-left" md-whiteframe="4"
+    layout="column" flex style="width: 250px; max-width: 250px">
+    <div layout="row" layout-gt-sm="column" layout-align="center center" style="margin: 10px;">
+      <img src="img/vfl_logo.png" alt="" style=" padding-right: 10px"
+        ng-style="{'width': ($mdMedia('gt-sm') ? '100px' : '50px')}" class="clickImg" ng-click='openHome()'>
+      <div class="md-title">{{sidenavServ.getTitle()}}</div>
+    </div>
+    <md-input-container ng-show="sidenavServ.isTeamSelectable() && userServ.getTeams().length > 1"
+      style="margin-left: 15px; margin-right: 15px">
+      <label>Mannschaft</label>
+      <md-select ng-model="selectedTeam" ng-change="setSelectedTeam(selectedTeam)">
+        <md-option ng-repeat="team in userServ.getTeams()" ng-value="team[1]">
+          {{team[0]}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-divider></md-divider>
+    <md-content>
+      <!--div ng-repeat="team in teamNames" class="md-button md-cornered md-ink-ripple sw-menu-item " ng-click='openTeam(team[1])'>{{team[0]}}</div>
+      <md-divider></md-divider>
+      <div class="md-button md-cornered md-ink-ripple sw-menu-item " ng-click='openTrainingtime()'>Trainingszeiten</div>
+      <div class="md-button md-cornered md-ink-ripple sw-menu-item " ng-click='openManagement()'>Jugendvorstand</div-->
+      <div ng-repeat="item in sidenavServ.getItems()">
+        <md-divider ng-if="!item.title"></md-divider>
+        <div ng-if="item.title" class="md-button md-cornered md-ink-ripple sw-menu-item " ng-click='item.fn()'>
+          {{item.title}}</div>
+      </div>
+    </md-content>
+    <div flex></div>
+    <md-divider></md-divider>
+    <span layout="row">
+      <a ng-href="#!/impressum" style="text-decoration: none; width: 50%"
+        class="noLink md-body-1 sw-menu-item">Impressum</a>
+      <a ng-href="#!/dataprivacy" style="text-decoration: none; width: 50%"
+        class="noLink md-body-1 sw-menu-item">Datenschutz</a>
+    </span>
+  </md-sidenav>
+
+  <section layout="column" flex layout-fill>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button hide-gt-md ng-click="toggleMainMenu()" ng-hide="hideMenu()" class="md-icon-button" flex="none"
+          aria-label="Menu">
+          <sw-icon iconset="navigation" icon="menu"></sw-icon>
+        </md-button>
+        <!--img src="images/vfl_logo.png" alt="" style="position: relative; width: 75px; top: 25px; left: 100px" /-->
+        <md-button ng-if="userServ.isAuthenticated()" ng-click='openHome()' class='md-icon-button'>
+          <sw-icon iconset="action" icon="home" width="24"></sw-icon>
+        </md-button>
+        <md-button ng-if="userServ.isAuthenticated()" ng-click='openAdmin()' class='md-icon-button'
+          style='font-size: 20px; width: 50px'>
+          <!--sw-icon ng-if="userServ.isAuthenticated()" iconset="navigation" icon="apps" width="24"></sw-icon -->
+          <span ng-show="userServ.getTeams().length === 1">{{userServ.getTeams()[0][1]}}</span>
+          <sw-icon ng-show="userServ.getTeams().length !== 0" iconset="navigation" icon="apps" width="24"></sw-icon>
+        </md-button>
+        <span flex></span>
+        <span style="padding-right: 10px">{{sidenavServ.getTitle()}}</span>
+        <!--img src="images/vfl_logo.png" alt="" style="width: 40px;" /-->
+        <span flex></span>
+        <div ng-click="handleLoginChange()" ng-hide="userServ.isAuthenticated()" layout="row" flex="none"
+          layout-align="start end" style="overflow: visible; text-transform: none"
+          class="md-button md-cornered md-ripple-ink" aria-label="Login">
+          <sw-icon iconset="action" icon="account_circle" width="24"></sw-icon>
+          <span class="md-caption" style="padding-left: 1ex">Anmelden</span>
+        </div>
+        <md-menu-bar ng-show="userServ.isAuthenticated()">
+          <md-menu>
+            <button ng-click="$mdMenu.open()">
+              <sw-icon iconset="action" icon="account_circle" width="24"></sw-icon>
+              <span style="padding-left: 1ex; color: white">{{userServ.getName()}}</span>
+            </button>
+            <md-menu-content>
+              <md-menu-item>
+                <md-button ng-click="openProfile()">
+                  <sw-icon iconset="social" icon="person" width="24"></sw-icon>
+                  Mein Profil
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="handleLoginChange()">
+                  <sw-icon iconset="action" icon="exit_to_app" width="24"></sw-icon>
+                  Abmelden
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </md-menu-bar>
+      </div>
+    </md-toolbar>
+    <md-content layout-padding>
+      <div ng-view>
+      </div>
+    </md-content>
+  </section>
+
+  <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+  <script src="bower_components/moment/moment.js" type="text/javascript"></script>
+  <script src="bower_components/moment/locale/de.js" type="text/javascript"></script>
+  <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+  <script src="bower_components/angular-i18n/angular-locale_de-de.js" type="text/javascript"></script>
+  <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+  <script src="bower_components/angular-messages/angular-messages.js" type="text/javascript"></script>
+  <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
+  <script src="bower_components/angular-fixed-table-header/src/fixed-table-header.js" type="text/javascript"></script>
+  <script src="bower_components/angular-material-data-table/dist/md-data-table.js" type="text/javascript"></script>
+  <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+  <script src="bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
+  <script src="bower_components/angular-material/angular-material.js" type="text/javascript"></script>
+  <script src="bower_components/mdPickers/dist/mdPickers.js" type="text/javascript"></script>
+  <script src="bower_components/tinymce/tinymce.min.js" type="text/javascript"></script>
+  <script src="bower_components/angular-ui-tinymce/src/tinymce.js" type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages/core/main.js" type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages/core/locales/de.js" type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages/daygrid/main.js" type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages-premium/timeline/main.js"
+    type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages-premium/resource-common/main.js"
+    type="text/javascript"></script>
+  <script src="bower_components/fullcalendar-scheduler/packages-premium/resource-timeline/main.js"
+    type="text/javascript"></script>
+
+  <script src="scripts/app.js" type="text/javascript"></script>
+  <script src="scripts/cfg/iconCfg.js" type="text/javascript"></script>
+  <script src="scripts/cfg/routeCfg.js" type="text/javascript"></script>
+  <script src="scripts/cfg/adminRouteCfg.js" type="text/javascript"></script>
+  <script src="scripts/cfg/sidenavRun.js" type="text/javascript"></script>
+
+  <script src="scripts/validator/equals.js" type="text/javascript"></script>
+  <script src="scripts/model/dateTime.js" type="text/javascript"></script>
+
+  <script src="scripts/appCtrl.js" type="text/javascript"></script>
+
+  <script src="components/dialog/dialog.js" type="text/javascript"></script>
+  <script src="components/enter/enter.js" type="text/javascript"></script>
+  <script src="components/icon/icon.js" type="text/javascript"></script>
+  <script src="components/news/news.js" type="text/javascript"></script>
+  <script src="components/match/match.js" type="text/javascript"></script>
+  <script src="components/teamAge/teamAge.js" type="text/javascript"></script>
+  <script src="components/archive/archive.js" type="text/javascript"></script>
+
+  <script src="views/landing/landingCtrl.js" type="text/javascript"></script>
+  <script src="views/mail/mail.js" type="text/javascript"></script>
+  <script src="views/managment/managementCtrl.js" type="text/javascript"></script>
+  <script src="views/team/teamCtrl.js" type="text/javascript"></script>
+  <script src="views/trainingtime/trainingtime.js" type="text/javascript"></script>
+  <script src="views/login/loginCtrl.js" type="text/javascript"></script>
+  <script src="views/magazine/magazineCtrl.js" type="text/javascript"></script>
+  <script src="views/download/downloadCtrl.js" type="text/javascript"></script>
+
+  <script src="views/admin/adminCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/news/newsCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/upload/uploadCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/profile/profile.js" type="text/javascript"></script>
+  <script src="views/admin/calendar/calendarCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/calendar/event/eventCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/resourceCalendar/resourceCalendarCtrl.js" type="text/javascript"></script>
+  <script src="views/admin/gameplan/gameplan.js" type="text/javascript"></script>
+  <script src="views/admin/gameplan/editMatch/editMatch.js" type="text/javascript"></script>
+  
+  <script src="scripts/resource/managementResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/matchResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/teamResoure.js" type="text/javascript"></script>
+  <script src="scripts/resource/trainerResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/newsResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/clubResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/trainingtimeResource.js" type="text/javascript"></script>
+  <script src="scripts/resource/eventResource.js" type="text/javascript"></script>
+
+  <script src="scripts/service/mailService.js" type="text/javascript"></script>
+  <script src="scripts/service/userService.js" type="text/javascript"></script>
+  <script src="scripts/service/sidenavService.js" type="text/javascript"></script>
+
+  <script src="lang/tinymce_de.js" type="text/javascript"></script>
+</body>
+
+</html>

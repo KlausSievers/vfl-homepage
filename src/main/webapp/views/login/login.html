@@ -1,0 +1,16 @@
+<md-dialog-content ng-controller="LoginCtrl">
+  <div class="md-dialog-content">
+    <div ng-if="error" style="color:red">Name oder Passwort falsch</div>
+    <form layout="column" role="form" ng-submit="login()">
+      <md-input-container>
+        <label>Name</label>
+        <input type="text" name="username" ng-model="credentials.username">
+      </md-input-container>
+      <md-input-container>
+        <label>Passwort</label>
+        <input type="password" name="password" ng-model="credentials.password">
+      </md-input-container>
+      <md-button type="submit">Anmelden</md-button>
+    </form>
+  </div>
+</md-dialog-content>

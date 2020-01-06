@@ -1,0 +1,26 @@
+<form name="mailForm">
+  <md-input-container>
+    <label>Von</label>
+    <input name="email" ng-model="mail.from" type="email" required>
+    <div ng-messages="mailForm.email.$error" role="alert" multiple>
+      <div ng-message="required">Bitte ausfüllen</div>
+      <div ng-message="email">Bitte gültige E-Mail angeben</div>
+    </div>
+  </md-input-container>
+  <md-input-container>
+    <label>Betreff</label>
+    <input name="subject" ng-model="mail.subject" required>
+    <div ng-messages="mailForm.subject.$error" role="alert" multiple>
+      <div ng-message="required">Bitte ausfüllen</div>
+    </div>
+  </md-input-container>
+  <md-input-container class="md-block">
+    <label>Text</label>
+    <textarea name="text" ng-model="mail.text" md-select-on-focus required></textarea>
+        <div ng-messages="mailForm.text.$error" role="alert" multiple>
+      <div ng-message="required">Bitte ausfüllen</div>
+    </div>
+  </md-input-container>
+
+  <md-button ng-click="send()">Senden</md-button>
+</form>

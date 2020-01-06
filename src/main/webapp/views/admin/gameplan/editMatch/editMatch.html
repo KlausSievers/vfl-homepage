@@ -1,0 +1,75 @@
+<ng-controller ng-controller="EditMatchCtrl">
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <form layout="column" role="form">
+        <div layout="row">
+          <div style="width:24px; margin-top: 30px">
+            <sw-icon iconset="action" icon="today"></sw-icon>
+          </div>
+          <md-input-container>
+            <label>Datum</label>
+            <input type="text" name="kickoff" ng-model="kickoffDate" required date>
+          </md-input-container>
+          <div style="width:24px; margin-top: 30px">
+            <sw-icon iconset="device" icon="access_time"></sw-icon>
+          </div>
+          <md-input-container>
+            <label>Zeit</label>
+            <input type="text" name="kickoff" ng-model="kickoffTime" required time>
+          </md-input-container>
+        </div>
+
+        <md-autocomplete name="opponent" placeholder="Gegner" md-selected-item="match.opponent"
+          md-search-text="opponentSearchText" md-match-case-insensitive="true" md-item-text="item.name"
+          md-items="item in getClubs()" required>
+          <span md-highlight-text="opponentSearchText">{{item.name}}</span>
+          <md-not-found>
+            Keinen Verein gefunden
+          </md-not-found>
+        </md-autocomplete>
+
+        <div layout="row" layout-padding>
+          <div>
+            <md-checkbox name="home" ng-model="match.home" style="margin-top:30px">
+              Heimspiel
+            </md-checkbox>
+          </div>
+          <md-input-container ng-show="match.home">
+              <label>Platz</label>
+              <md-select ng-model="match.sportsField">
+                <md-option ng-value="1">Rasen</md-option>
+                <md-option ng-value="2">Kunstrasen</md-option>
+              </md-select>
+            </md-input-container>
+          <md-input-container ng-show="match.home">
+            <input type="number" name="lockerRoom" placeholder="Kabine" ng-model="match.lockerRoom" max="4" min="1"   ng-required="match.home">
+          </md-input-container>
+          <md-input-container ng-show="match.home">
+            <input type="number" name="lockerRoomOpponent"   placeholder="Kabine Gegner" ng-model="match.lockerRoomOpponent"  ng-required="match.home" max="4" min="1">
+          </md-input-container>
+        </div>
+
+
+        <div layout="row" ng-show="options.result">
+          <div style="margin-top:30px">Ergebnis:</div>
+          <md-input-container style="width: 50px">
+            <input type="number" name="goalsHome" ng-model="match.goalsHome" max="99" min="0">
+          </md-input-container>
+          <div style="margin-top:30px">:</div>
+          <md-input-container style="width: 50px">
+            <input type="number" name="goalsAway" ng-model="match.goalsAway" max="99" min="0">
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+      Abbrechen
+    </md-button>
+    <md-button ng-click="save()">
+      Speichern
+    </md-button>
+  </md-dialog-actions>
+</ng-controller>

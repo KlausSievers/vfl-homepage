@@ -1,0 +1,37 @@
+<div class="md-headline">
+  Trainingszeiten
+</div>
+<md-table-container>
+  <table md-table>
+    <thead md-head>
+    <th md-column>Mannschaft</th>
+    <th md-column>Jahrgang</th>
+    <th md-column>Tag</th>
+    <th md-column>Zeit</th>
+    <th md-column>Trainer</th>
+    </thead>
+    <tbody md-body>
+      <tr md-row ng-repeat="team in teams">
+        <td md-cell><a ng-href="#!/team/{{team.shortName}}" class="noLink">{{team.name}}</a></td>
+        <td md-cell>
+          <team-age year-start="{{team.yearStart}}" year-end="{{team.yearEnd}}"></team-age>
+        </td>
+        <td md-cell>
+          <div ng-repeat="time in team.trainingtimeList | orderBy: 'dayOfWeek'">{{days[time.dayOfWeek]}}</div>
+        </td>
+        <td md-cell> 
+          <div ng-repeat="time in team.trainingtimeList| orderBy: 'dayOfWeek'">
+            {{(time.startTime| date : 'shortTime') + ' - ' +(time.endTime | date : 'shortTime')}}
+            <span ng-if="team.teamId === 15 && $index===0">in Grafenwald</span>
+            <span ng-if="team.teamId === 15 && $index===1">in Kirchhellen</span>
+          </div>
+        </td>
+        <td md-cell>
+          <div ng-repeat="trainer in team.trainerList">
+            {{trainer.firstName + " " + trainer.name}}
+          </div>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</md-table-container>

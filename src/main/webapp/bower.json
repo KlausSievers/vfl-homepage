@@ -1,0 +1,28 @@
+{
+  "name": "vflgrafenwald",
+  "version": "1.0.0",
+  "main": "path/to/main.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular": "1.7.5",
+    "angular-touch": "1.7.5",
+    "angular-resource": "1.7.5",
+    "angular-messages": "1.7.5",
+    "angular-route": "1.7.5",
+    "angular-i18n": "1.7.5",
+    "angular-material": "1.1.10",
+    "angular-material-data-table": "0.10.10",
+    "mdPickers": "0.7.5",
+    "angular-fixed-table-header": "0.2.1",
+    "fullcalendar": "latest",
+    "angular-ui-tinymce": "latest"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.7.5",
+    "angular-material": "1.1.0-rc.5"
+  }
+}

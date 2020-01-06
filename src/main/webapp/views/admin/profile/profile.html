@@ -1,0 +1,23 @@
+<div layout="row">
+  <form name="passwordForm" layout="column" novalidate>
+    <md-input-container flex="none">
+      <label>neues Passwort</label>
+      <input id="password" name="password" type="password" ng-model="newPassword" required ng-minlength="8" flex="none">
+      <div ng-messages="passwordForm.password.$error" multiple>
+        <div ng-message="required">Bitte ausfüllen</div>
+        <div ng-message="minlength">min. 8 Zeichen</div>
+      </div>
+    </md-input-container>
+    <md-input-container flex="initial">
+      <label>Passwort wiederholen</label>
+      <input id="matchPassword" name="matchPassword" type="password" ng-model="matchPassword" required equals="newPassword">
+      <div ng-messages="passwordForm.matchPassword.$error">
+        <div ng-message="required">Bitte ausfüllen</div>
+        <div ng-message="equals">Passwörter stimmen nicht überein</div>
+      </div>
+    </md-input-container>
+
+    <md-button type="submit" ng-click="changePassword()" ng-disabled="passwordForm.$invalid">Speichern</md-button>
+  </form>
+  <div flex="80"></div>
+</div>

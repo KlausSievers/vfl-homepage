@@ -1,0 +1,52 @@
+[
+  {
+    "id": "P",
+    "title": "Plätze",
+    "children": [
+      {
+        "id": "P1",
+        "title": "Rasen"
+      },
+      {
+        "id": "P2",
+        "title": "Kunstrasen"
+      }
+    ]
+  },
+  {
+    "id": "K",
+    "title": "Kabinen",
+    "children": [
+      {
+        "id": "K1",
+        "title": "Kabine 1"
+      },
+      {
+        "id": "K2",
+        "title": "Kabine 2"
+      },
+      {
+        "id": "K3",
+        "title": "Kabine 3"
+      },
+      {
+        "id": "K4",
+        "title": "Kabine 4"
+      }
+    ]
+  },
+  {
+    "id": "H",
+    "title": "Hütten",
+    "children": [
+      {
+        "id": "H1",
+        "title": "Rasen"
+      },
+      {
+        "id": "H2",
+        "title": "Kunstrasen"
+      }
+    ]
+  }
+]

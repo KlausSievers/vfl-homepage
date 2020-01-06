@@ -1,0 +1,12 @@
+hmLoadTopic({
+hmKeywords:"",
+hmTitle:"Leitmotive der Fussball-Jugend",
+hmDescription:"Thema: Leitmotive der Fußball-Jugend  Ansprechpartner und Adressaten: Jugendvorstand (Birgitt Schuknecht\/Michael Schlautmann)  Vorgehen: Die Leitmotive der Fussballjugend si",
+hmPrevLink:"durchfuehrungsbestimmungen-201.html",
+hmNextLink:"vfl-jugend-organigramm.html",
+hmParentLink:"index.html",
+hmBreadCrumbs:"",
+hmTitlePath:"Leitmotive der Fussball-Jugend",
+hmHeader:"<h1 class=\"p_Heading1\" style=\"page-break-after: avoid;\"><span class=\"f_Heading1\">Leitmotive der Fussball-Jugend<\/span><\/h1>\n\r",
+hmBody:"<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\" style=\"font-size: 1.09rem; font-weight: bold; text-decoration: underline;\">Thema:<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">Leitmotive der Fußball-Jugend<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\" style=\"font-size: 1.09rem; font-weight: bold; text-decoration: underline;\">Ansprechpartner und Adressaten:<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">Jugendvorstand (Birgitt Schuknecht\/Michael Schlautmann)<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\" style=\"font-size: 1.09rem; font-weight: bold; text-decoration: underline;\">Vorgehen:<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">Die Leitmotive der Fussballjugend sind <a href=\"\\Baggage\\VfL-Jugend_Leitmotive_2018-08-22_Final_V8_.pdf\" class=\"filelink\">HIER<\/a> einzusehen und entsprechend umzusetzen.<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">Es ist wichtig, dass wir uns auch nach außen nicht konzeptlos präsentieren. Die Leitlinien sollen uns eine Hilfestellung sein. Wichtig ist, dass die Leitlinien aber nicht nur geschriebenes Papier sind, sondern dass diese Leitlinien auch gelebt werden. Hier ist jeder aufgefordert Vorbild zu sein und an die Einhaltung dieser Leitlinien zu appelieren.<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r<p class=\"p_ARIAL11\"><span class=\"f_ARIAL11\">&nbsp;<\/span><\/p>\n\r"
+})

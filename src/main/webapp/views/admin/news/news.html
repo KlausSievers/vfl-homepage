@@ -1,0 +1,74 @@
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="Mannschaft" ng-if="team">
+    <md-content layout="row" layout-padding>
+      <md-list>
+        <md-subheader class="md-no-sticky">News</md-subheader>
+        <md-list-item  ng-repeat="n in news" ng-click="selectNews(n)">
+          <div class="md-list-item-text">{{n.headline}}</div>
+          <sw-icon iconset="action" icon="delete" ng-click="delete(n)" aria-label="News löschen" class="md-secondary md-hue-3"></sw-icon>
+        </md-list-item>
+      </md-list>
+
+      <form name="newsForm" ng-submit="save()">
+        <md-input-container>
+          <label>Überschrift</label>
+          <input ng-model="editNews.headline" required>
+        </md-input-container>
+
+        <input type="file" class="custom-file-input" file-model="myFile1">
+        <md-button class="md-raised md-primary" ng-click="uploadFile(myFile1)" ng-disabled="!myFile1">Upload</md-button>  
+
+        <textarea ui-tinymce="tinymceOptions" ng-model="editNews.text"></textarea>
+        <button type="submit" class='md-butten md-ink-ripple md-primary md-raised'>Speichern</button>
+      </form>
+    </md-content>
+  </md-tab>
+  <md-tab label="Startseite">
+    <md-content layout="row" layout-padding>
+      <md-list>
+        <md-subheader class="md-no-sticky">News</md-subheader>
+        <md-list-item  ng-repeat="n in newsLanding" ng-click="selectNews(n)">
+          <div class="md-list-item-text">{{n.headline}}</div>
+          <sw-icon iconset="action" icon="delete" ng-click="delete(n)" aria-label="News löschen" class="md-secondary md-hue-3"></sw-icon>
+        </md-list-item>
+      </md-list>
+
+      <form name="newsFormLanding" ng-submit="save(12)">
+        <md-input-container>
+          <label>Überschrift</label>
+          <input ng-model="editNews.headline" required>
+        </md-input-container>
+
+        <input type="file" class="custom-file-input" file-model="myFile2">
+        <md-button class="md-raised md-primary" ng-click="uploadFile(myFile2)" ng-disabled="!myFile2">Upload</md-button>  
+
+        <textarea ui-tinymce="tinymceOptions" ng-model="editNews.text"></textarea>
+        <button type="submit" class='md-butten md-ink-ripple md-primary md-raised'>Speichern</button>
+      </form>
+    </md-content>
+  </md-tab>
+  <md-tab label="Admin">
+    <md-content layout="row" layout-padding>
+      <md-list>
+        <md-subheader class="md-no-sticky">News</md-subheader>
+        <md-list-item  ng-repeat="n in newsAdmin" ng-click="selectNews(n)">
+          <div class="md-list-item-text">{{n.headline}}</div>
+          <sw-icon iconset="action" icon="delete" ng-click="delete(n)" aria-label="News löschen" class="md-secondary md-hue-3"></sw-icon>
+        </md-list-item>
+      </md-list>
+
+      <form name="newsFormLanding" ng-submit="save(18)">
+        <md-input-container>
+          <label>Überschrift</label>
+          <input ng-model="editNews.headline" required>
+        </md-input-container>
+
+        <input type="file" class="custom-file-input" file-model="myFile3">
+        <md-button class="md-raised md-primary" ng-click="uploadFile(myFile3)" ng-disabled="!myFile3">Upload</md-button>  
+
+        <textarea ui-tinymce="tinymceOptions" ng-model="editNews.text"></textarea>
+        <button type="submit" class='md-butten md-ink-ripple md-primary md-raised'>Speichern</button>
+      </form>
+    </md-content>
+  </md-tab>
+</md-tabs>

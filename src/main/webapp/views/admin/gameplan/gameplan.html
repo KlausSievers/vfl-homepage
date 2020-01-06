@@ -1,0 +1,45 @@
+<div layout="column" flex>
+  <md-table-container>
+    <table md-table>
+      <tbody md-body>
+        <tr md-row ng-repeat="match in matches| orderBy: 'kickoff'">
+          <td md-cell style="width:150px" layout="row">
+            <!--@todo icon button-->
+            <md-button class="md-icon-button" aria-label="News editieren" ng-click="edit(match)">
+              <sw-icon iconset="image" icon="edit"  class="md-secondary md-hue-3"></sw-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="News löschen" ng-click="delete(match)">
+              <sw-icon iconset="action" icon="delete"  class="md-secondary md-hue-3"></sw-icon>
+            </md-button>
+          </td>
+          <td md-cell>{{match.kickoff| date: 'dd.MM.yyyy HH:mm'}}</td>
+          <td md-cell>
+            <img ng-if="match.home && $mdMedia('gt-md')" ng-src="img/vfl_logo.png" style="height: 35px" />
+            <img ng-if="!match.home && $mdMedia('gt-md')" ng-src="img/club/{{match.opponent.logoPath|| 'default.png'}}" style="height: 35px" />
+            {{getNameHome(match)}}
+          </td>
+          <td md-cell>
+            -
+          </td>
+          <td md-cell>
+            <img ng-if="!match.home && $mdMedia('gt-md')" ng-src="img/vfl_logo.png" style="height: 35px" />
+            <img ng-if="match.home && $mdMedia('gt-md')" ng-src="img/club/{{match.opponent.logoPath|| 'default.png'}}" style="height: 35px" />
+            {{getNameAway(match)}}            
+          </td>
+          <td md-cell style="text-align: right">
+            {{getGoalsHome(match)}}
+          </td>
+          <td md-cell style="text-align: center">:</td>
+          <td md-cell style="text-align: left">
+            {{getGoalsAway(match)}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+  <div flex layout="row"  layout-align="end center">
+      <md-button class="md-fab md-primary" ng-click="add()">
+          <sw-icon iconset="content" icon="add"></sw-icon>
+      </md-button>
+  </div>
+</div>

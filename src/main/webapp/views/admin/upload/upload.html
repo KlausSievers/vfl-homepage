@@ -1,0 +1,14 @@
+<div class="md-headline">
+  Upload
+</div>
+<div id="sidebar" ng-controller="UploadCtrl">
+  <table class="table">
+    <tr>
+      <td><input type="file" class="custom-file-input" file-model="myFile"></td>
+    </tr>
+    <tr>
+      <td>
+        <md-button class="md-raised md-primary" ng-click="uploadFile('archive')" ng-disabled="!myFile">Upload</md-button></td>
+    </tr>
+  </table>
+</div>

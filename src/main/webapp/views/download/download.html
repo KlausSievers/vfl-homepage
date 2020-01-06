@@ -1,0 +1,17 @@
+<div class="md-headline" >
+  Downloads
+</div>
+<md-list>
+  <md-list-item class="secondary-button-padding" ng-repeat-start="metadata in metadataList" ng-click="download(metadata.uuid)">
+    <p>{{metadata.fileName}}</p>
+  </md-list-item>
+  <md-divider ng-repeat-end></md-divider>
+  <md-list-item class="secondary-button-padding" ng-href="http://www.vfl-grafenwald.de/wp-content/uploads/2016/04/Satzung_HV_2015.pdf" target="_blank">
+    <p>Satzung.pdf</p>
+  </md-list-item>
+  <md-divider></md-divider>
+  <md-list-item class="secondary-button-padding"  ng-href="http://www.vfl-grafenwald.de/wp-content/uploads/2017/06/2017_06_21_Abteilungsbeitraege.pdf" target="_blank">
+    <p>Beiträge.pdf</p>
+  </md-list-item>
+  <md-divider ></md-divider>
+</md-list>

@@ -1,0 +1,15 @@
+<div class="md-headline">
+  Waldgeflüster
+</div>
+
+<div layout="row" layout-wrap>
+    <md-card ng-repeat="metadata in metadataList | orderBy: '-issue'" layout="column" ng-click="download(metadata.uuid)" layout-padding
+    style="cursor: pointer;height: 200px; width: 115px;">
+    <img ng-src="/magazine/{{metadata.uuid}}/thumbnail"
+      style="max-height: 150px; max-width: 106px; width: auto; height: auto;">
+    <div layout="row" class="md-caption">
+      <div>#{{metadata.issue}}</div>
+      <div style="padding-left: 1ex">{{metadata.documentDate | date: 'mediumDate'}}</div>
+    </div>
+  </md-card>
+</div>

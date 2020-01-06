@@ -1,0 +1,44 @@
+<md-table-container>
+  <table md-table>
+    <tbody md-body>
+      <tr md-row>
+        <td colspan="4">
+          <div class="md-headline">
+            Seniorenvorstand
+          </div>
+        </td>
+      </tr>
+      <tr md-row ng-repeat="person in senior">
+        <td md-cell>{{person.job}}</td>
+        <td md-cell>{{person.firstName + " " + person.name}}</td>
+        <td md-cell>{{person.numberPrivate|| (person.numberMobile || "")}}</td>
+        <td md-cell>
+          <span ng-if="person.hasMail">
+            <a href="#!/mail/{{person.id}}" class="noLink">
+              <sw-icon iconset="communication" icon="email" width="24"></sw-icon>
+            </a>
+          </span>
+        </td>
+      </tr>
+      <tr md-row>
+        <td colspan="4">
+          <div class="md-headline">
+            Jugendvorstand
+          </div>
+        </td>
+      </tr>
+      <tr md-row ng-repeat="person in youth">
+        <td md-cell>{{person.job}}</td>
+        <td md-cell>{{person.firstName + " " + person.name}}</td>
+        <td md-cell>{{person.numberPrivate|| (person.numberMobile || "")}}</td>
+        <td md-cell>
+          <span ng-if="person.hasMail">
+            <a href="#!/mail/{{person.id}}" class="noLink">
+              <sw-icon iconset="communication" icon="email" width="24"></sw-icon>
+            </a>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>

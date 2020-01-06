@@ -1,0 +1,14 @@
+<md-dialog ng-keypress="keyPress($event)">
+  <md-toolbar class="md-hue-1">
+    <div class="md-toolbar-tools">
+      <h2>{{title}}</h2>
+      <span flex></span>
+      <md-button ng-show="closeable" class="md-icon-button" ng-click="cancel()">
+        <sw-icon iconset="navigation" icon="close"></sw-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <ng-include src="dlgTemplate">
+
+  </ng-include>
+</md-dialog>

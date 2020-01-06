@@ -1,0 +1,25 @@
+<md-card ng-if="match.id" style="margin-top: 0px">
+  <md-card-header>
+    <md-card-header-text >
+      <div class="md-title">{{title}}</div>
+      <div class="md-subhead">{{match.kickoff| date: 'dd.MM.yyyy HH:mm'}}</div>
+    </md-card-header-text>
+  </md-card-header>
+  <md-card-content layout="column" layout-fill>
+    <div layout="row">
+      <div flex flex-order="{{match.home ? 0 : 5}}">
+        <div style="text-align: center" layout-align="center center" >
+          <img ng-src="img/vfl_logo.png" style="height: 75px"/> 
+          <div>VfL Grafenwald</div>
+        </div>
+      </div>
+      <div flex="none" class="md-display-1" flex-order="2" ng-if="match.goalsHome >= 0 " layout layout-align="start center">{{match.goalsHome}}</div>
+      <div flex="10" flex-order="3"  class="md-display-1" layout layout-align="center center">-</div>
+      <div flex="none" class="md-display-1" flex-order="4" ng-if="match.goalsHome >= 0 " layout layout-align="end center" >{{match.goalsAway}}</div>
+      <div flex style="text-align: center" flex-order="{{match.home ? 5 : 0}}">
+        <img ng-src="img/club/{{match.opponent.logoPath|| 'default.png'}}" style="height: 75px"/> 
+        <div>{{match.opponent.name}}</div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
