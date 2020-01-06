@@ -1,0 +1,6 @@
+archive/**
+magazine/**
+target/
+src/main/webapp/.well-known/
+src/main/webapp/bower_components/
+src/main/webapp/container/
